@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animated Professional Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animation keyframes */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Utility class for animation */
+    .animate-fade-slide-up {
+      animation: fadeSlideUp 0.8s ease forwards;
+    }
+
+    /* Scroll reveal helper */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating circles animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Main Hero Section -->
+  <main class="min-h-screen flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto">
+    <section class="animate-fade-slide-up py-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-indigo-600 mb-6 leading-tight">
+        Empower Your Business with Real-Time Traffic Insights
+      </h1>
+      <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
+        Unlock powerful analytics, actionable data, and premium tools to boost your digital growth and stay ahead of the competition.
+      </p>
+      <a href="#get-started" 
+         class="inline-block px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300">
+        Get Started Now
+      </a>
+    </section>
+  </main>
+
+  <!-- About Section -->
+  <section id="about" class="max-w-7xl mx-auto px-6 py-20 reveal">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-8 text-center">About Our Website</h2>
+    <p class="max-w-3xl mx-auto text-gray-700 leading-relaxed text-center text-lg">
+      BrandName offers real-time, accurate traffic analytics trusted by thousands of businesses worldwide. Our platform delivers actionable insights that drive smarter marketing and sales strategies, helping you grow faster with data you can count on.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+      <div class="p-6 bg-indigo-50 rounded-lg shadow">
+        <h3 class="text-3xl font-bold text-indigo-600">52,348</h3>
+        <p class="mt-2 text-gray-600">Daily Visitors</p>
+      </div>
+      <div class="p-6 bg-indigo-50 rounded-lg shadow">
+        <h3 class="text-3xl font-bold text-indigo-600">1,285,732</h3>
+        <p class="mt-2 text-gray-600">Monthly Users</p>
+      </div>
+      <div class="p-6 bg-indigo-50 rounded-lg shadow">
+        <h3 class="text-3xl font-bold text-indigo-600">4,892,104</h3>
+        <p class="mt-2 text-gray-600">Page Views</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="bg-gray-50 py-20 reveal">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-12 text-center">What Our Users Say</h2>
+    <div class="max-w-5xl mx-auto grid gap-12 md:grid-cols-2">
+      <blockquote class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+        <p class="text-gray-700 italic">"BrandName's traffic analytics gave us unprecedented insights that boosted our sales by 30% in just 3 months."</p>
+        <footer class="mt-6 text-sm font-semibold text-indigo-600">— Sarah J., Marketing Director</footer>
+      </blockquote>
+
+      <blockquote class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+        <p class="text-gray-700 italic">"The user-friendly dashboard and accurate data made optimizing our campaigns easier than ever."</p>
+        <footer class="mt-6 text-sm font-semibold text-indigo-600">— David L., Product Manager</footer>
+      </blockquote>
+
+      <blockquote class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+        <p class="text-gray-700 italic">"Excellent support and reliable data that helps our team make smarter decisions every day."</p>
+        <footer class="mt-6 text-sm font-semibold text-indigo-600">— Maria K., CEO</footer>
+      </blockquote>
+
+      <blockquote class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+        <p class="text-gray-700 italic">"A must-have tool for digital marketers looking to stay ahead with data-driven strategies."</p>
+        <footer class="mt-6 text-sm font-semibold text-indigo-600">— James P., Marketing Specialist</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="max-w-7xl mx-auto px-6 py-20 reveal">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-10 text-center">Frequently Asked Questions</h2>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-shadow hover:shadow-lg">
+        <summary class="font-semibold text-gray-800 text-lg">How accurate is your traffic data?</summary>
+        <p class="mt-2 text-gray-600">We use multiple data sources and machine learning models to ensure high accuracy in tracking and reporting traffic data.</p>
+      </details>
+
+      <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-shadow hover:shadow-lg">
+        <summary class="font-semibold text-gray-800 text-lg">Can I export reports?</summary>
+        <p class="mt-2 text-gray-600">Yes, you can export detailed reports in various formats such as CSV and PDF for your convenience.</p>
+      </details>
+
+      <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-shadow hover:shadow-lg">
+        <summary class="font-semibold text-gray-800 text-lg">Is there a free trial?</summary>
+        <p class="mt-2 text-gray-600">We offer a 14-day free trial with full access to all features to help you evaluate our platform.</p>
+      </details>
+
+      <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-shadow hover:shadow-lg">
+        <summary class="font-semibold text-gray-800 text-lg">How do you protect my data?</summary>
+        <p class="mt-2 text-gray-600">We use industry-leading encryption and security protocols to protect all customer data and privacy.</p>
+      </details>
+
+      <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer transition-shadow hover:shadow-lg">
+        <summary class="font-semibold text-gray-800 text-lg">Can I upgrade my plan anytime?</summary>
+        <p class="mt-2 text-gray-600">Absolutely! You can upgrade or downgrade your subscription at any time from your account settings.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Floating Circles (decorative) -->
+  <div aria-hidden="true" class="fixed top-24 left-12 w-28 h-28 bg-indigo-200 rounded-full opacity-20 animate-[float_7s_ease-in-out_infinite]"></div>
+  <div aria-hidden="true" class="fixed bottom-24 right-16 w-36 h-36 bg-indigo-300 rounded-full opacity-15 animate-[float_9s_ease-in-out_infinite]"></div>
+
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
+  </style>
+
+  <script>
+    // Scroll Reveal Logic
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150;
+
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+
+</body>
+</html>

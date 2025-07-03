@@ -1,0 +1,46 @@
+<!-- app/views/devise/registrations/new.html.erb -->
+<div class="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
+  <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-xl">
+    <h2 class="text-center text-3xl font-extrabold text-indigo-800 mb-6">Create your account</h2>
+
+    <!-- Error messages -->
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="space-y-6">
+
+        <!-- Email -->
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <% if @minimum_password_length %>
+            <em class="text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <!-- Password Confirmation -->
+        <div>
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <!-- Submit -->
+        <div>
+          <%= f.submit "Sign up", class: "w-full py-3 coursor-pointer  px-4 bg-amber-500 hover:bg-amber-600 text-indigo-900 font-semibold rounded-md transition" %>
+        </div>
+
+      </div>
+    <% end %>
+
+    <!-- Devise Links -->
+    <div class="mt-6 text-center text-sm text-gray-600">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

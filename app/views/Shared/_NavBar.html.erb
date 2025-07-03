@@ -1,0 +1,120 @@
+<nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <%= link_to "Orgratro It Traffics", root_path, class: "text-2xl font-bold text-indigo-600" %>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex md:items-center space-x-8">
+        <%= link_to "Home", root_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Features", features_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Pricing", pricing_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Contact", contact_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+
+        <!-- Dropdown (clickable) -->
+        <div class="relative">
+          <button id="accountDropdownBtn" class="text-gray-700 hover:text-indigo-600 font-medium focus:outline-none flex items-center gap-1">
+            Account
+            <svg class="w-4 h-4 transform transition-transform duration-300" id="arrowIcon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="accountDropdown" class="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg opacity-0 scale-95 transform transition-all duration-300 origin-top hidden z-50">
+            <% if user_signed_in?%>
+                <%= link_to "User Dashbord", user_profile_publisher_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+            <% elsif admin_signed_in? %>
+              <%= link_to "Admin Dashbord", user_profile_advatiser_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+            <% else %>
+              <%= link_to "Advertiser", new_admin_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+              <%= link_to "Publisher", new_user_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center">
+        <a href="#" class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-200">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
+    <%= link_to "Home", root_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
+    <%= link_to "Features", features_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
+    <%= link_to "Pricing", pricing_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
+    <%= link_to "Contact", contact_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
+
+    <!-- Mobile Dropdown -->
+    <div class="border-t pt-2">
+      <span class="block text-gray-500 text-sm font-semibold">Account</span>
+      <%= link_to "Advertiser", root_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+      <%= link_to "Publisher", root_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+    </div>
+
+    <a href="#" class="block mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md text-center hover:bg-indigo-700 transition duration-200">
+      Get Started
+    </a>
+  </div>
+</nav>
+
+<!-- JavaScript -->
+<script>
+  // Mobile menu toggle
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  // Dropdown menu toggle
+  const accountBtn = document.getElementById('accountDropdownBtn');
+  const accountMenu = document.getElementById('accountDropdown');
+  const arrowIcon = document.getElementById('arrowIcon');
+
+  let isOpen = false;
+
+  accountBtn.addEventListener('click', () => {
+    isOpen = !isOpen;
+    accountMenu.classList.toggle('hidden');
+    setTimeout(() => {
+      if (isOpen) {
+        accountMenu.classList.add('opacity-100', 'scale-100');
+        accountMenu.classList.remove('opacity-0', 'scale-95');
+        arrowIcon.classList.add('rotate-180');
+      } else {
+        accountMenu.classList.remove('opacity-100', 'scale-100');
+        accountMenu.classList.add('opacity-0', 'scale-95');
+        arrowIcon.classList.remove('rotate-180');
+        setTimeout(() => accountMenu.classList.add('hidden'), 300);
+      }
+    }, 10);
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!accountBtn.contains(e.target) && !accountMenu.contains(e.target)) {
+      if (isOpen) {
+        isOpen = false;
+        accountMenu.classList.remove('opacity-100', 'scale-100');
+        accountMenu.classList.add('opacity-0', 'scale-95');
+        arrowIcon.classList.remove('rotate-180');
+        setTimeout(() => accountMenu.classList.add('hidden'), 300);
+      }
+    }
+  });
+</script>
