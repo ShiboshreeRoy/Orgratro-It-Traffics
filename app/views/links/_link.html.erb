@@ -1,8 +1,27 @@
-<div id="<%= dom_id link %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Url:</strong>
-    <%= link.url %>
-    <%= link_to "Visit", visit_link_path(link), target: "_blank", class: "text-blue-500 hover:underline" %>
+<div id="<%= dom_id(link) %>" class="w-full max-w-2xl mx-auto my-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-300">
 
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+    <!-- URL Details -->
+    <div class="flex-1">
+      <div class="text-sm font-medium text-gray-500 mb-1">Shortened Link</div>
+      <p class="text-lg font-semibold text-gray-800 break-words">
+        <%= link.url %>
+      </p>
+      <p class="text-xs text-gray-400 mt-1">
+        Created: <%= l(link.created_at, format: :long) %>
+      </p>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="shrink-0">
+     <% if current_admin %>
+       <%= link_to "Visit", visit_link_path(link), target: "_blank", rel: "noopener", class: "inline-block px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-200 shadow-sm" %>
+  <% else %>
+      <%= link_to "Skip & Show Next", show_random_links_path,
+            class: "inline-block px-5 py-2.5 rounded-md bg-gray-100 hover:bg-gray-200 font-medium transition" %>
+    </div>
+       </div>
+<% end %>
   </div>
 </div>

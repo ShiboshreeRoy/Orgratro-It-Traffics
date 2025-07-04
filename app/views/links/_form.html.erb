@@ -1,22 +1,35 @@
-<%= form_with(model: link, class: "contents") do |form| %>
-  <% if link.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+<div class="max-w-xl mx-auto  shadow-lg rounded-xl p-6 mt-10">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Submit a New Link</h2>
 
-      <ul class="list-disc ml-6">
-        <% link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: link, class: "space-y-6") do |form| %>
+    
+    <% if link.errors.any? %>
+      <div class="bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-md">
+        <h3 class="font-semibold mb-2"><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h3>
+        <ul class="list-disc list-inside text-sm">
+          <% link.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- URL Field -->
+    <div>
+      <%= form.label :url, class: "block text-sm font-semibold text-gray-700 mb-1" %>
+      <%= form.text_field :url, class: [
+            "block w-full px-4 py-2 border rounded-md shadow-sm text-sm transition-all duration-200",
+            link.errors[:url].any? ? "border-red-400 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+          ] %>
+      <% if link.errors[:url].any? %>
+        <p class="text-sm text-red-600 mt-1"><%= link.errors[:url].first %></p>
+      <% end %>
     </div>
+
+    <!-- Submit Button -->
+    <div>
+      <%= form.submit "Create Link", class: "w-full sm:w-auto px-6 py-2.5 text-white bg-blue-600 hover:bg-blue-500 rounded-md font-semibold text-sm transition duration-200" %>
+    </div>
+
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :url %>
-    <%= form.text_field :url, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": link.errors[:url].none?, "border-red-400 focus:outline-red-600": link.errors[:url].any?}] %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>

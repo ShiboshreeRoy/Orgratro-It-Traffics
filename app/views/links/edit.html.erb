@@ -1,10 +1,22 @@
-<% content_for :title, "Editing link" %>
+<% content_for :title, "Edit Link" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing link</h1>
+<div class="w-full max-w-2xl mx-auto px-4 py-10">
 
-  <%= render "form", link: @link %>
+  <!-- Page Title -->
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Edit Link</h1>
 
-  <%= link_to "Show this link", @link, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to links", links_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <!-- Edit Form -->
+  <div class="bg-white shadow-md rounded-xl p-6">
+    <%= render "form", link: @link %>
+  </div>
+
+  <!-- Action Links -->
+  <div class="mt-6 flex flex-col sm:flex-row gap-3">
+
+    <%= link_to "🔗 View Link", @link,
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-indigo-50 hover:bg-indigo-100 text-indigo-700 transition" %>
+
+    <%= link_to "← Back to All Links", links_path,
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700 transition" %>
+  </div>
 </div>

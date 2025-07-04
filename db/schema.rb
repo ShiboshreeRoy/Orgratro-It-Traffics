@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_02_234428) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_04_203340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_02_234428) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "link_views", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "link_id", null: false
+    t.datetime "viewed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_link_views_on_link_id"
+    t.index ["user_id"], name: "index_link_views_on_user_id"
+  end
+
   create_table "links", force: :cascade do |t|
     t.string "url"
     t.bigint "admin_id", null: false
@@ -33,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_02_234428) do
     t.datetime "updated_at", null: false
     t.integer "visit_count"
     t.decimal "revenue_amount"
+    t.decimal "value"
     t.index ["admin_id"], name: "index_links_on_admin_id"
   end
 
@@ -44,9 +55,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_02_234428) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "balance", precision: 30, scale: 10, default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "link_views", "links"
+  add_foreign_key "link_views", "users"
   add_foreign_key "links", "admins"
 end

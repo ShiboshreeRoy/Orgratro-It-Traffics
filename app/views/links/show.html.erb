@@ -1,15 +1,36 @@
-<% content_for :title, "Showing link" %>
+<% content_for :title, "Link Details" %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full max-w-2xl mx-auto px-4 py-10">
+
+  <!-- Flash Notice -->
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <div id="notice" class="mb-6 inline-block px-4 py-2 bg-green-100 text-green-700 font-semibold rounded-md shadow-sm">
+      <%= notice %>
+    </div>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing link</h1>
+  <!-- Page Title -->
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Link Details</h1>
 
-  <%= render @link %>
+  <!-- Rendered Link Partial -->
+  <div class="bg-white shadow-md rounded-xl p-6 mb-6">
+    <%= render @link %>
+  </div>
 
-  <%= link_to "Edit this link", edit_link_path(@link), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to links", links_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this link", @link, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  <!-- Action Buttons -->
+  <div class="flex flex-col sm:flex-row gap-3">
+
+    <%= link_to "✏️ Edit", edit_link_path(@link),
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-yellow-50 hover:bg-yellow-100 text-yellow-700 transition" %>
+
+    <%= link_to "← Back to All Links", links_path,
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700 transition" %>
+
+    <%= button_to "🗑️ Delete", @link, method: :delete,
+          form_class: "sm:inline-block",
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-red-600 hover:bg-red-500 text-white transition",
+          data: { turbo_confirm: "Are you sure you want to delete this link?" } %>
+
+  </div>
+
 </div>

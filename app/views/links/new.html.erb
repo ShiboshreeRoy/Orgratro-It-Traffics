@@ -1,9 +1,19 @@
-<% content_for :title, "New link" %>
+<% content_for :title, "New Link" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New link</h1>
+<div class="w-full max-w-2xl mx-auto px-4 py-10">
 
-  <%= render "form", link: @link %>
+  <!-- Page Title -->
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Create a New Link</h1>
 
-  <%= link_to "Back to links", links_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <!-- Link Form -->
+  <div class=" shadow-md rounded-xl p-6">
+    <%= render "form", link: @link %>
+  </div>
+
+  <!-- Back Button -->
+  <div class="mt-6">
+    <%= link_to "← Back to all links", links_path,
+          class: "inline-block text-sm font-medium px-5 py-2.5 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700 transition" %>
+  </div>
+
 </div>

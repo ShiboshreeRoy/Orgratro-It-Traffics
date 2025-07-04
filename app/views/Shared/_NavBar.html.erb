@@ -2,7 +2,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <!-- Logo -->
-      <div class="flex-shrink-0 flex items-center">
+      <div class="flex-shrink-0 flex items-center gap-2">
+        <%= image_tag("orgratro_it.png", class: "w-[35px] h-[35px]") %>
         <%= link_to "Orgratro It Traffics", root_path, class: "text-2xl font-bold text-indigo-600" %>
       </div>
 
@@ -22,14 +23,14 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <div id="accountDropdown" class="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg opacity-0 scale-95 transform transition-all duration-300 origin-top hidden z-50">
-            <% if user_signed_in?%>
-                <%= link_to "User Dashbord", user_profile_publisher_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
-            <% elsif admin_signed_in? %>
-              <%= link_to "Admin Dashbord", user_profile_advatiser_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+          <div id="accountDropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg opacity-0 scale-95 transform transition-all duration-300 origin-top hidden z-50">
+            <% if admin_signed_in? %>
+              <%= link_to "Admin Dashboard", user_profile_advatiser_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+            <% elsif user_signed_in? %>
+              <%= link_to "User Dashboard", admin_index_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
             <% else %>
-              <%= link_to "Advertiser", new_admin_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
-              <%= link_to "Publisher", new_user_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+              <%= link_to "Advertiser Login", new_admin_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+              <%= link_to "Publisher Login", new_user_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
             <% end %>
           </div>
         </div>
@@ -61,11 +62,16 @@
     <%= link_to "Pricing", pricing_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
     <%= link_to "Contact", contact_path, class: "block py-2 text-gray-700 hover:text-indigo-600" %>
 
-    <!-- Mobile Dropdown -->
     <div class="border-t pt-2">
       <span class="block text-gray-500 text-sm font-semibold">Account</span>
-      <%= link_to "Advertiser", root_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
-      <%= link_to "Publisher", root_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+      <% if admin_signed_in? %>
+        <%= link_to "Admin Dashboard", user_profile_advatiser_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+      <% elsif user_signed_in? %>
+        <%= link_to "User Dashboard", user_profile_publisher_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+      <% else %>
+        <%= link_to "Advertiser Login", new_admin_session_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+        <%= link_to "Publisher Login", new_user_session_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+      <% end %>
     </div>
 
     <a href="#" class="block mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md text-center hover:bg-indigo-700 transition duration-200">
@@ -85,7 +91,6 @@
   const accountBtn = document.getElementById('accountDropdownBtn');
   const accountMenu = document.getElementById('accountDropdown');
   const arrowIcon = document.getElementById('arrowIcon');
-
   let isOpen = false;
 
   accountBtn.addEventListener('click', () => {

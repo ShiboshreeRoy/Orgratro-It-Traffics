@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   
   get "user_profile/advatiser"
   get "user_profile/publisher"
+
+ 
+ 
+  get 'links/random', to: 'links#show_random', as: :show_random_links
   get '/link/:id/track', to: 'user_profile#advatiser', as: :track_link
 
   get "admin/index"
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
   
   devise_for :admins
   devise_for :users
+  
+   
   resources :links do
   member do
     get :visit
