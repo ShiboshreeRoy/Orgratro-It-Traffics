@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :link_views, dependent: :destroy
   has_many :viewed_links, through: :link_views, source: :link
+
+  has_many :instructions
+  has_many :instruction_clicks
 end

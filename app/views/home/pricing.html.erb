@@ -1,20 +1,7 @@
-<style>
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-
 <div class="bg-gray-50 text-green-800">
 
   <!-- Header -->
-  <header class="text-center py-20 bg-gradient-to-r from-indigo-700 to-indigo-900 text-white reveal">
+  <header class="text-center py-20 bg-indigo-700 text-white" data-aos="zoom-in">
     <h1 class="text-5xl font-bold mb-4">Choose Your Plan</h1>
     <p class="text-lg max-w-2xl mx-auto opacity-90">
       Simple, transparent pricing for every business. Upgrade anytime.
@@ -24,9 +11,9 @@
   <!-- Pricing Cards -->
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      
+
       <!-- Free Plan -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center border border-gray-200 hover:shadow-xl transition reveal">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center border border-gray-200 hover:shadow-2xl transform hover:-translate-y-2 transition duration-500 ease-out" data-aos="fade-up" data-aos-delay="100">
         <h2 class="text-2xl font-bold text-indigo-700 mb-2">Free</h2>
         <p class="text-gray-500 mb-6">For individuals just getting started</p>
         <div class="text-4xl font-extrabold text-indigo-900 mb-6">$0<span class="text-lg font-normal text-gray-500">/mo</span></div>
@@ -35,11 +22,11 @@
           <li>✓ Limited Reports</li>
           <li>✓ Email Support</li>
         </ul>
-        <a href="#" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded hover:bg-indigo-700 transition">Get Started</a>
+        <a href="#" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded hover:bg-indigo-700 transition duration-300">Get Started</a>
       </div>
 
       <!-- Pro Plan (Most Popular) -->
-      <div class="bg-white shadow-2xl rounded-xl p-10 text-center border-4 border-amber-500 transform scale-105 reveal">
+      <div class="bg-white shadow-2xl rounded-xl p-10 text-center border-4 border-amber-500 transform scale-105 hover:scale-110 transition duration-500 ease-in-out" data-aos="flip-left" data-aos-delay="200">
         <div class="mb-2">
           <span class="inline-block text-sm font-medium uppercase tracking-wider bg-amber-500 text-white px-3 py-1 rounded-full">Most Popular</span>
         </div>
@@ -52,11 +39,11 @@
           <li>✓ Priority Support</li>
           <li>✓ Up to 100,000 visits/month</li>
         </ul>
-        <a href="#" class="inline-block bg-amber-500 text-indigo-900 font-semibold px-8 py-3 rounded hover:bg-amber-600 transition">Start Free Trial</a>
+        <a href="#" class="inline-block bg-amber-500 text-indigo-900 font-semibold px-8 py-3 rounded hover:bg-amber-600 transition duration-300">Start Free Trial</a>
       </div>
 
       <!-- Enterprise Plan -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center border border-gray-200 hover:shadow-xl transition reveal">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center border border-gray-200 hover:shadow-2xl transform hover:-translate-y-2 transition duration-500 ease-out" data-aos="fade-up" data-aos-delay="300">
         <h2 class="text-2xl font-bold text-indigo-700 mb-2">Enterprise</h2>
         <p class="text-gray-500 mb-6">For large companies with high traffic</p>
         <div class="text-4xl font-extrabold text-indigo-900 mb-6">Custom</div>
@@ -66,36 +53,26 @@
           <li>✓ SLA + Premium Support</li>
           <li>✓ Custom Reports & API</li>
         </ul>
-        <a href="#" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded hover:bg-indigo-700 transition">Contact Sales</a>
+        <a href="#" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded hover:bg-indigo-700 transition duration-300">Contact Sales</a>
       </div>
 
     </div>
   </section>
 
   <!-- FAQ CTA -->
-  <section class="bg-indigo-800 text-white text-center py-16 px-6 reveal">
+  <section class="bg-indigo-800 text-white text-center py-16 px-6" data-aos="fade-up" data-aos-delay="400">
     <h2 class="text-3xl font-bold mb-4">Have questions about pricing?</h2>
     <p class="text-lg mb-6 max-w-2xl mx-auto">We're here to help. Contact our team for more info or custom plans.</p>
-    <a href="#" class="inline-block bg-amber-500 text-indigo-900 font-semibold px-8 py-3 rounded hover:bg-amber-600 transition">Get in Touch</a>
+    <%= link_to "Get Started Today", new_user_registration_path, class: "inline-block px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300" %>
   </section>
 
 </div>
 
-<!-- Scroll Animation Script -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
-    const windowHeight = window.innerHeight;
-    const revealPoint = 1;
-
-    reveals.forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < windowHeight - revealPoint) {
-        el.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('load', revealOnScroll);
+  AOS.init({
+    duration: 1200,
+    easing: 'ease-out-cubic',
+    once: true,
+  });
 </script>

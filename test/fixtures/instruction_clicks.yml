@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instruction: one
+  user: one
+  clicked_at: 2025-07-05 04:29:15
+
+two:
+  instruction: two
+  user: two
+  clicked_at: 2025-07-05 04:29:15

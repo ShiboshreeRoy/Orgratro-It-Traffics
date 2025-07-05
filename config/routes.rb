@@ -21,10 +21,15 @@ Rails.application.routes.draw do
   
    
   resources :links do
+      member do
+        get :visit
+      end
+  end
+  resources :instructions do
   member do
-    get :visit
+    get :track_click, to: "instructions#track_click", as: :track_click
   end
-  end
+end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,11 @@
+
+<h2><%= @instruction.title %></h2>
+<p><%= @instruction.body %></p>
+<p>Link: <%= @instruction.link %></p>
+
+<h3 class="mt-6">Clicks:</h3>
+<ul>
+  <% @instruction.instruction_clicks.each do |click| %>
+    <li><%= click.user.email %> at <%= click.clicked_at.strftime("%Y-%m-%d %H:%M") %></li>
+  <% end %>
+</ul>

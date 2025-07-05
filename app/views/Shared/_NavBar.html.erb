@@ -30,7 +30,7 @@
               <%= link_to "User Dashboard", admin_index_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
             <% else %>
               <%= link_to "Advertiser Login", new_admin_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
-              <%= link_to "Publisher Login", new_user_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
+              <%= link_to "Intern/Publisher Login", new_user_session_path, class: "block px-4 py-2 text-gray-700 hover:bg-indigo-100" %>
             <% end %>
           </div>
         </div>
@@ -38,9 +38,9 @@
 
       <!-- CTA Button -->
       <div class="hidden md:flex items-center">
-        <a href="#" class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-200">
-          Get Started
-        </a>
+        <%= link_to " Get Started",new_user_registration_path ,class: "px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-200" %>
+         
+       
       </div>
 
       <!-- Mobile Menu Button -->
@@ -70,13 +70,12 @@
         <%= link_to "User Dashboard", user_profile_publisher_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
       <% else %>
         <%= link_to "Advertiser Login", new_admin_session_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
-        <%= link_to "Publisher Login", new_user_session_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
+        <%= link_to "Intern/Publisher Login", new_user_session_path, class: "block py-2 pl-4 text-gray-700 hover:text-indigo-600" %>
       <% end %>
     </div>
 
-    <a href="#" class="block mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md text-center hover:bg-indigo-700 transition duration-200">
-      Get Started
-    </a>
+    <%= link_to " Get Started",new_user_registration_path ,class: "px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-200" %>
+         
   </div>
 </nav>
 

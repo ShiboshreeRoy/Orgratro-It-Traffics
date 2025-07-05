@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_04_203340) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_04_222915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_04_203340) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "instruction_clicks", force: :cascade do |t|
+    t.bigint "instruction_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "clicked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instruction_id"], name: "index_instruction_clicks_on_instruction_id"
+    t.index ["user_id"], name: "index_instruction_clicks_on_user_id"
+  end
+
+  create_table "instructions", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "link"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_instructions_on_user_id"
   end
 
   create_table "link_views", force: :cascade do |t|
@@ -60,6 +80,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_04_203340) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "instruction_clicks", "instructions"
+  add_foreign_key "instruction_clicks", "users"
+  add_foreign_key "instructions", "users"
   add_foreign_key "link_views", "links"
   add_foreign_key "link_views", "users"
   add_foreign_key "links", "admins"

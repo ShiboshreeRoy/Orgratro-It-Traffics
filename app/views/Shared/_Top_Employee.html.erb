@@ -1,0 +1,75 @@
+<!-- Hacker-Themed Notice Slider -->
+<div 
+  role="region" 
+  aria-label="Top Users Activity" 
+  class="overflow-hidden w-full bg-black/70 backdrop-blur-lg border-2 border-green-500/30 shadow-[0_0_20px_#00ff00] rounded-xl mt-6 fixed z-50 animate-border-gradient-hacker"
+  data-aos="fade-down"
+  data-aos-duration="1200"
+  data-aos-delay="200"
+>
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-green-500 via-cyan-400 to-purple-500 text-black px-6 py-3 font-bold text-sm tracking-widest rounded-t-xl shadow-inner font-mono uppercase select-none">
+   Top Users Activity Log
+  </div>
+
+  <!-- Slider Track -->
+  <div class="relative overflow-hidden whitespace-nowrap px-6 py-4 text-xs font-mono text-green-300">
+    <div 
+      class="animate-marquee-hacker flex gap-6 min-w-full will-change-transform"
+      onmouseover="this.style.animationPlayState='paused'" 
+      onmouseout="this.style.animationPlayState='running'"
+      aria-live="polite"
+    >
+      <% @top_users.each do |user| %>
+        <div 
+          class="inline-block bg-black/50 backdrop-blur-md text-lime-300 px-6 py-3 rounded-lg shadow-lg border border-green-600/30 cursor-pointer hover:bg-green-800/30 hover:shadow-[0_0_10px_#00ff00] hover:scale-[1.03] transition-all duration-300 ease-in-out select-text"
+          title="<%= user.email %> — <%= user.clicks_count %> clicks"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <span class="font-semibold text-emerald-300 tracking-wide">
+            <%= user.email.split('@').first.gsub(/\d/, '').gsub(/[^a-zA-Z]/, '').capitalize %>
+          </span>
+          <span class="mx-2 text-green-400">|</span>
+          <span class="text-cyan-300"><%= user.email %></span>
+          <span class="mx-2 text-green-400">|</span>
+          <span class="font-bold text-pink-400"><%= user.clicks_count %> Hits</span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+  @keyframes marquee-hacker {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee-hacker {
+    animation: marquee-hacker 28s linear infinite;
+  }
+
+  @keyframes borderGradientHacker {
+    0%   { border-color: #00ff00; }
+    25%  { border-color: #00ffff; }
+    50%  { border-color: #ff00ff; }
+    75%  { border-color: #00ff00; }
+    100% { border-color: #00ff00; }
+  }
+
+  .animate-border-gradient-hacker {
+    animation: borderGradientHacker 8s ease-in-out infinite;
+  }
+
+  .backdrop-blur-lg {
+    box-shadow: inset 0 4px 30px rgba(0, 255, 0, 0.15);
+  }
+</style>
+
+<!-- Include AOS JS (before </body>) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
