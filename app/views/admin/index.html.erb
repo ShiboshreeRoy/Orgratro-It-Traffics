@@ -35,12 +35,12 @@
     <main class="p-6 space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
-          <h2 class="text-lg font-semibold text-gray-700">Total Links</h2>
+          <h2 class="text-lg font-semibold text-gray-700">Total L Views </h2>
           <p class="mt-2 text-3xl font-extrabold text-indigo-600"><%= @total_links || 0 %></p>
         </div>
 
         <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
-          <h2 class="text-lg font-semibold text-gray-700">Short Links</h2>
+          <h2 class="text-lg font-semibold text-gray-700">Short L Views</h2>
           <p class="mt-2 text-3xl font-extrabold text-indigo-600"><%= @instructions.sum { |i| i.instruction_clicks.count } %></p>
         </div>
 
@@ -52,12 +52,12 @@
         </div>
 
         <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
-          <h2 class="text-lg font-semibold text-gray-700">All User Link Views</h2>
+          <h2 class="text-lg font-semibold text-gray-700">All User L Views</h2>
           <p class="mt-2 text-3xl font-extrabold text-blue-500"><%= LinkView.count %></p>
         </div>
 
         <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
-          <h2 class="text-lg font-semibold text-gray-700">Your Link Views</h2>
+          <h2 class="text-lg font-semibold text-gray-700">Your L Views</h2>
           <p class="mt-2 text-3xl font-extrabold text-purple-600"><%= current_user.link_views.count %></p>
         </div>
       </div>
