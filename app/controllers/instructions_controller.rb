@@ -4,8 +4,17 @@ class InstructionsController < ApplicationController
 
   def index
     @users = User.all
+    @instructions = Instruction.all
+     session[:instruction_ids] ||= Instruction.pluck(:id).shuffle
+  if session[:instruction_ids].empty?
+    session[:instruction_ids] = Instruction.pluck(:id).shuffle
+  end
+  current_id = session[:instruction_ids].pop
+  @instructions = [Instruction.find(current_id)]
+  
   if current_admin.present?
     @instructions = Instruction.all
+   
   elsif current_user.present?
     @instructions = current_user.instructions
   else
